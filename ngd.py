@@ -43,12 +43,6 @@ def get_search_results_count(query):
 
     return 0
 
-# Example usage
-# search_query = "python programming"
-# results_count = get_search_results_count(search_query)
-# print(f"Number of results for '{search_query}': {results_count}")
-
-
 def ngd(w1, w2):
     f_w1 = math.log(get_search_results_count(w1), 2)
     f_w2 = math.log(get_search_results_count(w2), 2)
