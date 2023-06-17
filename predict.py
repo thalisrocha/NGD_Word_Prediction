@@ -22,11 +22,10 @@ import gpt_2_simple as gpt2
 #     return generated_words
 
 def generate_word_predictions(input_phrase, num_predictions, model_name, model_dir):
-    tf.reset_default_graph()
+    # tf.reset_default_graph()
     sess = gpt2.start_tf_sess()
     gpt2.load_gpt2(sess, model_name=model_name, model_dir=model_dir)
 
-    word_predictions = []
     generated_words = []
     while len(generated_words) < num_predictions:
         generated_word = gpt2.generate(sess, model_name=model_name,
@@ -42,9 +41,3 @@ def generate_word_predictions(input_phrase, num_predictions, model_name, model_d
         print(generated_words)
 
     return generated_words[:num_predictions]
-
-
-    
-
-
-

@@ -1,8 +1,9 @@
-from ngd import ngd, get_top_words_v1, get_top_words_v2
+from ngd import get_top_words_v1, get_top_words_v2
 from predict import generate_word_predictions
+from ncd import get_top_words_v3
 
 def main():
-
+    
     model_name = "124M"
     model_dir = r"C:\Users\rocha\OneDrive\Área de Trabalho\IA225\IA225_Project\NGD_Word_Prediction\gpt-2\models"
 
@@ -27,6 +28,10 @@ def main():
         for idx, word in enumerate(top_words):
             print("Word", idx+1, ":", word)
             
+        print("Top words considering the NCD:")
+        top_words = get_top_words_v3(input_phrase, word_predictions, 5) 
+        for idx, word in enumerate(top_words):
+            print("Word", idx+1, ":", word)           
 
         choice = input("Do you want to continue? (y/n): ")
         if choice.lower() != 'y':

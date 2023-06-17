@@ -1,8 +1,6 @@
 import numpy as np
 import requests
 import math
-# import nltk
-# nltk.download('punkt')
 from nltk.tokenize import word_tokenize
 from bs4 import BeautifulSoup
 from sklearn.model_selection import train_test_split
@@ -56,13 +54,10 @@ def ngd(w1, w2):
 
 
 def get_top_words_v1(input_phrase, predictions, num_words):
-    # Calculate NGD for each predicted word
     ngd_scores = [(word, ngd(input_phrase, word)) for word in predictions]
 
-    # Sort the words based on their NGD scores in ascending order
     sorted_words = sorted(ngd_scores, key=lambda x: x[1])
 
-    # Get the top 'num_words' words with the smallest NGD scores
     top_words = [word for word, _ in sorted_words[:num_words]]
 
     return top_words
