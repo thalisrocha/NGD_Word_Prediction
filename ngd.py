@@ -1,6 +1,9 @@
 import numpy as np
 import requests
 import math
+# import nltk
+# nltk.download('punkt')
+from nltk.tokenize import word_tokenize
 from bs4 import BeautifulSoup
 from sklearn.model_selection import train_test_split
 
@@ -52,7 +55,7 @@ def ngd(w1, w2):
     return (max(f_w1, f_w2) - f_w1_w2) / (N - min(f_w1, f_w2))
 
 
-def get_top_words(input_phrase, predictions, num_words):
+def get_top_words_v1(input_phrase, predictions, num_words):
     # Calculate NGD for each predicted word
     ngd_scores = [(word, ngd(input_phrase, word)) for word in predictions]
 
@@ -63,3 +66,32 @@ def get_top_words(input_phrase, predictions, num_words):
     top_words = [word for word, _ in sorted_words[:num_words]]
 
     return top_words
+
+
+
+def get_top_words_v2(input_phrase, predictions, num_words):
+    input_tokens = word_tokenize(input_phrase)
+    print(input_tokens)
+
+    ngd_scores = []
+    for word in predictions:
+        ngd_scores.append((word, get_mean_ngd(input_tokens, word)))
+
+    sorted_words = sorted(ngd_scores, key=lambda x: x[1])
+
+    top_words = [word for word, _ in sorted_words[:num_words]]
+
+    return top_words
+
+
+def get_mean_ngd(tokens1, tokens2):
+    total_ngd = 0.0
+    count = 0
+
+    for token1 in tokens1:
+        total_ngd += ngd(token1, tokens2)
+        count += 1
+
+    mean_ngd = total_ngd / count
+
+    return mean_ngd
