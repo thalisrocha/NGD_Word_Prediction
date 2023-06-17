@@ -2,8 +2,7 @@ from ngd import ngd, get_top_words_v1, get_top_words_v2
 from predict import generate_word_predictions
 
 def main():
-    # Set the model name and checkpoint directory
-    # Set the model name and checkpoint directory
+
     model_name = "124M"
     model_dir = r"C:\Users\rocha\OneDrive\Área de Trabalho\IA225\IA225_Project\NGD_Word_Prediction\gpt-2\models"
 
