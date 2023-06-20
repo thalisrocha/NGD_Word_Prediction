@@ -1,6 +1,10 @@
-from ngd import get_top_words_v1, get_top_words_v2
+from ngd import ngd, get_top_words_v1, get_top_words_v2
 from predict import generate_word_predictions
 from ncd import get_top_words_v3
+
+from sklearn.metrics import precision_score, recall_score, f1_score
+from sklearn.preprocessing import MultiLabelBinarizer
+from nltk.translate.bleu_score import sentence_bleu
 
 def main():
     
@@ -11,6 +15,9 @@ def main():
         input_phrase = input("Enter your input phrase: ")
         num_predictions = int(input("Enter the number of word predictions: "))
 
+        top_words = get_top_words_v1(input_phrase, ["sleep"], 5)
+        print(top_words)
+        
         word_predictions = generate_word_predictions(input_phrase, num_predictions, model_name, model_dir)
 
         print("Word predictions:")
@@ -23,15 +30,15 @@ def main():
         for idx, word in enumerate(top_words):
             print("Word", idx+1, ":", word)
             
-        print("Top words considering the tokenized input phrase:")
-        top_words = get_top_words_v2(input_phrase, word_predictions, 5)
-        for idx, word in enumerate(top_words):
-            print("Word", idx+1, ":", word)
+        # print("Top words considering the tokenized input phrase:")
+        # top_words = get_top_words_v2(input_phrase, word_predictions, 5)
+        # for idx, word in enumerate(top_words):
+        #     print("Word", idx+1, ":", word)
             
         print("Top words considering the NCD:")
         top_words = get_top_words_v3(input_phrase, word_predictions, 5) 
         for idx, word in enumerate(top_words):
-            print("Word", idx+1, ":", word)           
+            print("Word", idx+1, ":", word)     
 
         choice = input("Do you want to continue? (y/n): ")
         if choice.lower() != 'y':
