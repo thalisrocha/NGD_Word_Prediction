@@ -21,16 +21,10 @@ def main():
         for idx, word in enumerate(word_predictions):
             print("Word", idx+1, ":", word)
         
-        top_words = get_top_words_v1(input_phrase, word_predictions, 10)
-        
         print("Top words considering the entire input phrase:")
+        top_words = get_top_words_v1(input_phrase, word_predictions, 5)
         for idx, word in enumerate(top_words):
             print("Word", idx+1, ":", word)
-            
-        # print("Top words considering the tokenized input phrase:")
-        # top_words = get_top_words_v2(input_phrase, word_predictions, 5)
-        # for idx, word in enumerate(top_words):
-        #     print("Word", idx+1, ":", word)
             
         print("Top words considering the NCD:")
         top_words = get_top_words_v3(input_phrase, word_predictions, 5) 
