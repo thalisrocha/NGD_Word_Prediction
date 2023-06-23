@@ -15,16 +15,13 @@ def main():
         input_phrase = input("Enter your input phrase: ")
         num_predictions = int(input("Enter the number of word predictions: "))
 
-        top_words = get_top_words_v1(input_phrase, ["sleep"], 5)
-        print(top_words)
-        
         word_predictions = generate_word_predictions(input_phrase, num_predictions, model_name, model_dir)
 
         print("Word predictions:")
         for idx, word in enumerate(word_predictions):
             print("Word", idx+1, ":", word)
         
-        top_words = get_top_words_v1(input_phrase, word_predictions, 5)
+        top_words = get_top_words_v1(input_phrase, word_predictions, 10)
         
         print("Top words considering the entire input phrase:")
         for idx, word in enumerate(top_words):
