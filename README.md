@@ -1,4 +1,4 @@
-# # Kolmogorov Complexity-Based Word Predictor (NGD_Word_Prediction)
+# Kolmogorov Complexity-Based Word Predictor (NGD_Word_Prediction)
 
 ## Description
 
