@@ -1,4 +1,4 @@
-# NGD_Word_Prediction
+# # Kolmogorov Complexity-Based Word Predictor (NGD_Word_Prediction)
 
 ## Description
 
@@ -47,3 +47,24 @@ The program will provide the top word predictions and then ask if you want to co
 ## Note 
 
 This code is designed for educational and research purposes. Please ensure to abide by the terms of service of the Google Custom Search API and the usage policies of the GPT-2 model.
+
+## Model's construction
+
+### Pre-processing
+
+The initial idea of directly using NGD for predictions faced scalability issues. As a solution, the GPT-2 model was employed for initial predictions, followed by the application of NGD to rank these predictions. Various challenges, such as dealing with Google's API limits and ensuring correct search query formulation, were addressed during this phase.
+
+### Method evaluation
+
+Post pre-processing, two main methodologies were explored:
+
+1. Calculating NGD between the entire input phrase and each predicted word.
+2. Computing the average NCD in a similar manner.
+
+A variety of test phrases were used to evaluate the efficacy of these methods.
+
+## Discussion and Conclusions
+
+While the NGD ranking generally aligns with anticipated predictions, it struggles with high-frequency, closed-class words. Moreover, the GPT-2 predictions sometimes deviate from the expected outcomes, indicating a limitation of the model. The model's prolonged response time also makes it unsuitable for real-time applications.
+
+
